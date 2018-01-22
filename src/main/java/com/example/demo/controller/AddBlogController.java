@@ -20,7 +20,7 @@ public class AddBlogController {
 
 
     @Autowired
-    AddBlogService addBlogService; //service for adding
+    AddBlogService addBlogService; //service for adding...
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<Blog> update(@RequestBody Blog blog){
