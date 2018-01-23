@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by Paksi Péter on 19/01/2018.
  */
-
+@EnableSwagger2
 @Controller
 public class DeleteBlogController {
 

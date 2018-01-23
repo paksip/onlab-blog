@@ -9,12 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by Paksi Péter on 19/01/2018.
  */
+@EnableSwagger2
 @Controller
 public class AddBlogController {
 

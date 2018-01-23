@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by Paksi Péter on 19/01/2018.
  */
-
+@EnableSwagger2
 @Controller
 public class ListBlogsController {
 
