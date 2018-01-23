@@ -6,9 +6,7 @@ import com.example.demo.service.DeleteBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,8 +19,15 @@ public class DeleteBlogController {
     @Autowired
     DeleteBlogService deleteBlogService;
 
+    @CrossOrigin
     @RequestMapping(value = "/blog/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int itemId) {
         deleteBlogService.delete(itemId);
+    }
+
+    //Set this header for every response to enable CORS
+    @ModelAttribute
+    public void setVaryResponseHeader(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin","*");
     }
 }

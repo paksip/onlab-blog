@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -24,6 +21,7 @@ public class FindBlogController {
     FindBlogService findBlogService;
 
 
+    @CrossOrigin
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public ResponseEntity<Blog> getBlogById(@PathVariable int id){
 
@@ -38,4 +36,6 @@ public class FindBlogController {
     public void setVaryResponseHeader(HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin","*");
     }
+
+
 }
