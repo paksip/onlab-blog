@@ -22,6 +22,7 @@ public class Blog {
     @NotNull
     private String title;
 
+    @NotNull
     private String text;
 
     public void setId(Integer id) {

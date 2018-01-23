@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 /**
  * Created by Paksi Péter on 19/01/2018.
  */
+
 @Controller
 public class ListBlogsController {
 
