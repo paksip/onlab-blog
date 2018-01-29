@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+
 
 /**
  * Created by Paksi Péter on 19/01/2018.
@@ -31,6 +33,7 @@ public class AddBlogController {
         if(blog == null){
             return new ResponseEntity<Blog>(blog, HttpStatus.NO_CONTENT);
         }
+        blog.setDate(new Date());
         addBlogService.add(blog);
         return new ResponseEntity<Blog>(blog, HttpStatus.CREATED);
     }

@@ -3,10 +3,12 @@ package com.example.demo.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.awt.print.Book;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +28,22 @@ public class Blog {
 
     @NotNull
     private String text;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private Date date;
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Date getDate() {
+
+        return date;
+    }
 
     @JsonIgnore
     @OneToMany(mappedBy = "blog")

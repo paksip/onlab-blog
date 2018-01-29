@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * Created by Paksi Péter on 29/01/2018.
@@ -31,6 +32,7 @@ public class AddCommentController {
     @RequestMapping(value = "/addcomment/{id}", method = RequestMethod.POST)
     public ResponseEntity<Comment> add(@RequestBody Comment comment, @PathVariable int id){
 
+        comment.setDate(new Date());
         addCommentService.add(id, comment);
 
         Blog blog = findBlogService.findBlogById(id);
