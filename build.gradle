@@ -27,9 +27,12 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.8-dmr'
-	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
+	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.12.Final'
+
+
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.0.1'
-	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.0.2'
 
 
