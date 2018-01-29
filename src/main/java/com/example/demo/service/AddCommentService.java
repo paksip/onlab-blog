@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Paksi Péter on 29/01/2018.
  */
@@ -23,6 +26,13 @@ public class AddCommentService {
     public void add(int blogId, Comment comment) {
         Blog b = blogRepository.findOne(blogId);
         comment.setBlog(b);
+
+        Date dt = new Date();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String currentTime = sdf.format(dt);
+        comment.setDate(currentTime);
 
         commentRepository.save(comment);
 

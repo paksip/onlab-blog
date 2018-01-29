@@ -33,7 +33,7 @@ public class AddBlogController {
         if(blog == null){
             return new ResponseEntity<Blog>(blog, HttpStatus.NO_CONTENT);
         }
-        blog.setDate(new Date());
+
         addBlogService.add(blog);
         return new ResponseEntity<Blog>(blog, HttpStatus.CREATED);
     }

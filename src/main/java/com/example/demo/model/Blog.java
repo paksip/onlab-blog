@@ -29,21 +29,22 @@ public class Blog {
     @NotNull
     private String text;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private Date date;
 
-    public void setDate(Date date) {
+    private String date;
+
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getDate() {
+
+        return date;
     }
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
-    public Date getDate() {
-
-        return date;
-    }
 
     @JsonIgnore
     @OneToMany(mappedBy = "blog")

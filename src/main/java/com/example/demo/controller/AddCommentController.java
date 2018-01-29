@@ -32,7 +32,7 @@ public class AddCommentController {
     @RequestMapping(value = "/addcomment/{id}", method = RequestMethod.POST)
     public ResponseEntity<Comment> add(@RequestBody Comment comment, @PathVariable int id){
 
-        comment.setDate(new Date());
+
         addCommentService.add(id, comment);
 
         Blog blog = findBlogService.findBlogById(id);
