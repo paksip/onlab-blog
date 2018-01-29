@@ -9,26 +9,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
-
 /**
- * Created by Paksi Péter on 19/01/2018.
+ * Created by Paksi Péter on 29/01/2018.
  */
 @Service
-public class DeleteBlogService {
-
-    @Autowired
-    BlogRepository blogRepository;
+public class DeleteCommentService {
 
     @Autowired
     CommentRepository commentRepository;
 
     @Transactional
     public void delete(@PathVariable("id") int itemId) {
-        Blog blog = blogRepository.findOne(itemId);
-        List<Comment> comments = commentRepository.findAllByBlog(blog);
-
-        commentRepository.delete(comments);
-        blogRepository.delete(blog);
+        Comment c = commentRepository.findOne(itemId);
+        commentRepository.delete(c);
     }
 }
