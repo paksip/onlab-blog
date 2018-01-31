@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.awt.print.Book;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class Blog {
     private String title;
 
     @NotNull
+    @Lob
     private String text;
 
 
