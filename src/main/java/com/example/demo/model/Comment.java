@@ -14,6 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name="comment")
 public class Comment {
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -25,30 +26,19 @@ public class Comment {
     @NotNull
     private String author;
 
-
     private String date;
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getDate() {
-
-        return date;
-    }
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "blog_id")
     private Blog blog;
 
-
-    public Blog getBlog() {
-        return blog;
-    }
-
     public void setBlog(Blog blog) {
         this.blog = blog;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setId(Integer id) {
@@ -74,5 +64,14 @@ public class Comment {
 
     public String getAuthor() {
         return author;
+    }
+
+    public String getDate() {
+
+        return date;
+    }
+
+    public Blog getBlog() {
+        return blog;
     }
 }

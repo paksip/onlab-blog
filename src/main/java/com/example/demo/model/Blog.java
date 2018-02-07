@@ -20,6 +20,7 @@ import java.util.Set;
 @Entity
 @Table(name="blog")
 public class Blog {
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -31,30 +32,18 @@ public class Blog {
     @Lob
     private String text;
 
-
     private String date;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
 
     public void setDate(String date) {
         this.date = date;
     }
 
-    public String getDate() {
-
-        return date;
-    }
-
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "blog")
-    private List<Comment> comments;
-
-
-    public List<Comment> getComments() {
-        return comments;
     }
 
     public void setComment(Comment comment) {
@@ -78,6 +67,10 @@ public class Blog {
         return id;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -86,5 +79,8 @@ public class Blog {
         return text;
     }
 
-    //private Date created;
+    public String getDate() {
+
+        return date;
+    }
 }
