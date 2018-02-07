@@ -7,11 +7,7 @@ import com.example.demo.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Paksi Péter on 06/02/2018.
@@ -32,11 +28,8 @@ public class CommentService {
         Blog blog = blogRepository.findOne(blogId);
         comment.setBlog(blog);
 
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = simpleDateFormat.format(date);
-
-        comment.setDate(currentTime);
+        Date currentDate = new Date();
+        comment.setDate(currentDate);
 
         commentRepository.save(comment);
         blog.setComment(comment);
@@ -53,10 +46,10 @@ public class CommentService {
 
     //Get all comments for a blog
     @Transactional
-    public List<Comment> findCommentsByBlogId(int id){
+    public Iterable<Comment> findCommentsByBlogId(int id){
 
         Blog blog = blogRepository.findOne(new Integer(id));
 
-        return commentRepository.findAllByBlog(blog);
+       return commentRepository.findAllByBlog(blog);
     }
 }

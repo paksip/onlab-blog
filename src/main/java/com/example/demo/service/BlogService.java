@@ -1,17 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.BlogRepository;
-import com.example.demo.dao.CommentRepository;
 import com.example.demo.model.Blog;
-import com.example.demo.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Paksi Péter on 06/02/2018.
@@ -26,11 +20,8 @@ public class BlogService {
     @Transactional
     public void add(Blog blog) {
 
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = simpleDateFormat.format(date);
-
-        blog.setDate(currentTime);
+        Date currentDate = new Date();
+        blog.setDate(currentDate);
 
         blogRepository.save(blog);
     }
@@ -57,6 +48,8 @@ public class BlogService {
     @Transactional
     public Iterable<Blog> getAll(){
 
-        return blogRepository.findAll();
+        Iterable<Blog> blogs = blogRepository.findAll();
+
+        return blogs;
     }
 }

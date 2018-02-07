@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -26,7 +28,8 @@ public class Comment {
     @NotNull
     private String author;
 
-    private String date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    private Date date;
 
     @JsonIgnore
     @ManyToOne
@@ -37,7 +40,7 @@ public class Comment {
         this.blog = blog;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -66,7 +69,7 @@ public class Comment {
         return author;
     }
 
-    public String getDate() {
+    public Date getDate() {
 
         return date;
     }
@@ -74,4 +77,6 @@ public class Comment {
     public Blog getBlog() {
         return blog;
     }
+
 }
+
