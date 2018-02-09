@@ -32,7 +32,7 @@ public class CommentService {
         comment.setDate(currentDate);
 
         commentRepository.save(comment);
-        blog.setComment(comment);
+        blog.addComment(comment);
         blogRepository.save(blog);
     }
 

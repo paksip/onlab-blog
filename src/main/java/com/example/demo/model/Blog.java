@@ -11,10 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.awt.print.Book;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Paksi Péter on 19/01/2018.
@@ -41,6 +38,10 @@ public class Blog {
     @OneToMany(mappedBy = "blog", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
+    public Blog() {
+        comments = new ArrayList<>();
+    }
+
     public void setDate(Date date) {
         this.date = date;
     }
@@ -49,8 +50,8 @@ public class Blog {
         this.comments = comments;
     }
 
-    public void setComment(Comment comment) {
-        this.comments.add(comment);
+    public void addComment(Comment comment){
+        comments.add(comment);
     }
 
     public void setId(Integer id) {
