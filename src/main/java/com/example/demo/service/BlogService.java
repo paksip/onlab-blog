@@ -26,6 +26,14 @@ public class BlogService {
         blogRepository.save(blog);
     }
 
+    //Search in blogs
+    @Transactional
+    public Iterable<Blog> search(String search) {
+
+       Iterable<Blog> blogs = blogRepository.findAllByTitleContaining(search);
+       return blogs;
+    }
+
     //Delete a blog
     @Transactional
     public void delete(int id) {
