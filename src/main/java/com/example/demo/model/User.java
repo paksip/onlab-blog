@@ -26,6 +26,15 @@ public class User {
     @NotNull
     private String email;
 
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = hash * 17 + id;
+        hash = hash * 31 + username.hashCode();
+        hash = hash * 13 + password.hashCode();
+        return hash;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
