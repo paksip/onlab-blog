@@ -22,11 +22,11 @@ public class CommentController {
 
     //Add new comment for a blog
     @RequestMapping(value = "/addcomment/{id}", method = RequestMethod.POST)
-    public ResponseEntity<Comment> add(@RequestBody Comment comment, @PathVariable int id){
+    public ResponseEntity<Iterable<Comment>> add(@RequestBody Comment comment, @PathVariable int id){
 
-        commentService.add(id, comment);
+        Iterable<Comment> comments = commentService.add(id, comment);
 
-        return new ResponseEntity<Comment>(comment, HttpStatus.OK);
+        return new ResponseEntity<Iterable<Comment>>(comments, HttpStatus.OK);
     }
 
     //Delete a comment by id

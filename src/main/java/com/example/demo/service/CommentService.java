@@ -23,7 +23,7 @@ public class CommentService {
 
     //Add a comment to a blog
     @Transactional
-    public void add(int blogId, Comment comment) {
+    public Iterable<Comment> add(int blogId, Comment comment) {
 
         Blog blog = blogRepository.findOne(blogId);
         comment.setBlog(blog);
@@ -34,6 +34,8 @@ public class CommentService {
         commentRepository.save(comment);
         blog.addComment(comment);
         blogRepository.save(blog);
+
+        return commentRepository.findAll();
     }
 
     //Delete a comment
