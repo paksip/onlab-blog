@@ -22,11 +22,14 @@ public class UserService {
     public void register(User user) throws NoSuchAlgorithmException {
 
         //Encrypt user's password
-        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-        messageDigest.update(user.getPassword().getBytes());
-        user.setPassword(new String(messageDigest.digest()));
+        try{
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(user.getPassword().getBytes());
+            user.setPassword(new String(messageDigest.digest()));
+        }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
 
         userRepository.save(user);
-
     }
 }

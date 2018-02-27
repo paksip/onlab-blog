@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.Principal;
+
 /**
  * Created by Paksi Péter on 27/02/2018.
  */
@@ -21,10 +24,19 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/registrate", method = RequestMethod.POST)
-    public ResponseEntity<User> add(@RequestBody User user){
+    public ResponseEntity<User> add(@RequestBody User user) throws NoSuchAlgorithmException {
 
-        userService.register(user);
+        try {
+            userService.register(user);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+        return user;
     }
 }
