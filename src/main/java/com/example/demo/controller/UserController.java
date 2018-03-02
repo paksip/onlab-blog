@@ -37,7 +37,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
-    public ResponseEntity<User> authenticate(@RequestBody User user) {
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+    public ResponseEntity<User> authenticate(@RequestBody User user) throws NoSuchAlgorithmException{
+        HttpStatus result = HttpStatus.OK ;
+        try {
+            result = userService.auth(user);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<User>(user, result);
     }
 }

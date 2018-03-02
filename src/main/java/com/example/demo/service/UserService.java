@@ -23,7 +23,7 @@ public class UserService {
     public HttpStatus register(User userClient) throws NoSuchAlgorithmException {
 
         if(userRepository.findByUsernameOrEmail(userClient.getUsername(), userClient.getEmail()) != null){ //It already exists
-            return HttpStatus.FORBIDDEN;
+            return HttpStatus.FORBIDDEN; //403
         }
         //Encrypt user's password
         try{
@@ -36,5 +36,30 @@ public class UserService {
 
         userRepository.save(userClient);
         return HttpStatus.OK;
+    }
+
+    public HttpStatus auth(User userClient) throws NoSuchAlgorithmException{
+
+        String passwordClientEncrypted = "";
+
+        //Exist by username?
+        User user = userRepository.findByUsername(userClient.getUsername());
+        if(user == null){
+            return HttpStatus.FORBIDDEN; //403
+        }
+        //Encrypt given password
+        try{
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(userClient.getPassword().getBytes());
+            passwordClientEncrypted =  new String(messageDigest.digest());
+        }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        //Check password
+        if(!user.getPassword().equals(passwordClientEncrypted)){
+            return HttpStatus.FORBIDDEN; //403
+        }
+        return HttpStatus.OK;
+
     }
 }
