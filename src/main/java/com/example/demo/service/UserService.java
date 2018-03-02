@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,17 +20,21 @@ public class UserService {
     UserRepository userRepository;
 
     @Transactional
-    public void register(User user) throws NoSuchAlgorithmException {
+    public HttpStatus register(User userClient) throws NoSuchAlgorithmException {
 
+        if(userRepository.findByUsernameOrEmail(userClient.getUsername(), userClient.getEmail()) != null){ //It already exists
+            return HttpStatus.FORBIDDEN;
+        }
         //Encrypt user's password
         try{
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(user.getPassword().getBytes());
-            user.setPassword(new String(messageDigest.digest()));
+            messageDigest.update(userClient.getPassword().getBytes());
+            userClient.setPassword(new String(messageDigest.digest()));
         }catch(NoSuchAlgorithmException e){
             e.printStackTrace();
         }
 
-        userRepository.save(user);
+        userRepository.save(userClient);
+        return HttpStatus.OK;
     }
 }

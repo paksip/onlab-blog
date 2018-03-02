@@ -24,7 +24,7 @@ import java.nio.charset.Charset;
  */
 @CrossOrigin(origins = "http://localhost:4200")
 @EnableSwagger2
-@Controller
+@RestController
 public class BlogController {
 
     @Autowired

@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @CrossOrigin(origins = "http://localhost:4200")
 @EnableSwagger2
-@Controller
+@RestController
 public class CommentController {
 
     @Autowired

@@ -17,7 +17,7 @@ import java.security.Principal;
  */
 @CrossOrigin(origins = "http://localhost:4200")
 @EnableSwagger2
-@Controller
+@RestController
 public class UserController {
 
     @Autowired
@@ -26,17 +26,18 @@ public class UserController {
     @RequestMapping(value = "/registrate", method = RequestMethod.POST)
     public ResponseEntity<User> add(@RequestBody User user) throws NoSuchAlgorithmException {
 
+        HttpStatus result = HttpStatus.OK ;
         try {
-            userService.register(user);
+            result = userService.register(user);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        return new ResponseEntity<User>(user, result);
     }
 
-    @RequestMapping("/user")
-    public Principal user(Principal user) {
-        return user;
+    @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
+    public ResponseEntity<User> authenticate(@RequestBody User user) {
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 }
